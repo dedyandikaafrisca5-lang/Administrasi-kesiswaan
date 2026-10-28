@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+/* 1. Pengaturan Halaman Standar Cetak / PDF (A4 Portrait Default di tingkat Root) */
+@page {
+  size: A4 portrait;
+  margin: 12mm 15mm 15mm 15mm;
+}
+
+@page landscape-page {
+  size: A4 landscape;
+  margin: 10mm 15mm 12mm 15mm;
+}
+
+.page-landscape {
+  page: landscape-page;
+}
+
+@media print {
+  /* 2. Warna & Akurasi Cetak */
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 3. Reset Body & HTML agar tidak terpotong (menghapus overflow & batas tinggi viewport) */
+  html, body {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+  }
+
+  #root,
+  #root > div,
+  main {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+    background: transparent !important;
+  }
+
+  /* 4. Sembunyikan elemen navigasi, tombol, sidebar, dan header aplikasi */
+  .print\:hidden,
+  .no-print,
+  aside,
+  nav,
+  header:not(.print-header),
+  footer:not(.print-footer) {
+    display: none !important;
+  }
+
+  /* Sembunyikan background view saat modal cetak aktif */
+  body.printing-modal aside,
+  body.printing-modal nav,
+  body.printing-modal header:not(.print-header),
+  body.printing-modal footer:not(.print-footer),
+  body.printing-modal .print-hide-when-modal,
+  body:has(.print-modal-overlay) aside,
+  body:has(.print-modal-overlay) nav,
+  body:has(.print-modal-overlay) header:not(.print-header),
+  body:has(.print-modal-overlay) footer:not(.print-footer),
+  body:has(.print-modal-overlay) .print-hide-when-modal {
+    display: none !important;
+  }
+
+  /* 5. Struktur Modal Cetak: Hancurkan perangkap modal (fixed/overflow) */
+  .print-modal-overlay {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    inset: auto !important;
+    z-index: auto !important;
+  }
+
+  .print-modal-container {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .print-document-body {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* 6. Aturan Pemisahan Halaman (Page Breaks) */
+  .page-break-before {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
+  .page-break-after {
+    break-after: page !important;
+    page-break-after: always !important;
+  }
+
+  .page-break-inside-avoid,
+  .break-inside-avoid {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+    /* 7. Tipografi & Tabel Standar Kedinasan */
+    h1, h2, h3, h4, h5, h6 {
+      break-after: avoid !important;
+      page-break-after: avoid !important;
+      color: #000000 !important;
+    }
+
+    table {
+      width: 100% !important;
+      max-width: 100% !important;
+      border-collapse: collapse !important;
+      page-break-inside: auto !important;
+    }
+
+    thead {
+      display: table-header-group !important;
+    }
+
+    tfoot {
+      display: table-footer-group !important;
+    }
+
+    tbody {
+      display: table-row-group !important;
+    }
+
+    tr {
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+    }
+
+    th, td {
+      word-break: normal !important;
+      color: #000000 !important;
+    }
+
+    /* Sembunyikan bayangan, garis tepi dekoratif yang tidak perlu di print */
+    .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl {
+      box-shadow: none !important;
+    }
+  }

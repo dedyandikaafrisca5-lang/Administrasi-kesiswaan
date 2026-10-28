@@ -1,0 +1,6 @@
+{
+  "name": "SIM Kesiswaan SMP Negeri 2 Pulung",
+  "description": "Sistem Informasi Manajemen Kesiswaan terintegrasi Google Apps Script, Google Sheets, dan Google Drive untuk SMP Negeri 2 Pulung (Penyusunan Proposal Kegiatan Otomatis dengan AI terintegrasi RAB, Data Induk Siswa jenjang SMP Kelas VII, VIII, IX, Administrasi Unit & Progja, Pengajuan Anggaran RAB/LPJ, Form Pengajuan Honor Pembina & Pelatih Ekstrakurikuler, Prestasi Siswa, serta Mutasi & Tracer Study Alumni).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
